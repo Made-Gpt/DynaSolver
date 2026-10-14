@@ -1,0 +1,45 @@
+schema_version: 1
+experiment_id: baseline_mspt_90_grid18
+paths:
+  code_root: .
+  data_root: ${DYNASOLVER_DATA}
+  manifest: ${DYNASOLVER_DATA}/manifests/waterlily_6robot_grid18x18x36_n11664_skip20_f90_interval1_manifest.json
+  geopt_checkpoint: ${GEOPT_CHECKPOINT}
+  runs_root: ${DYNASOLVER_DATA}/runs/baseline_mspt_90_grid18
+model:
+  name: MSPTBaseline
+  space_dim: 3
+  fun_dim: 11
+  state_dim: 4
+  n_hidden: 256
+  n_heads: 8
+  n_layers: 5
+  supernodes: 32
+  dropout: 0.0
+  act: gelu
+  geotype: unstructured
+training:
+  initialization: from_scratch
+  points: 11664
+  subset_seed: 20260829
+  batch_size: 6
+  num_workers: 4
+  prefetch_factor: 2
+  pin_memory: true
+  lr: 0.0001
+  weight_decay: 1.0e-05
+  epochs: 250
+  early_stop_patience: 1000000
+  early_stop_min_epoch: 0
+  max_grad_norm: 1.0
+  seeds:
+  - 17
+  selection_metric: validation_loss
+  validation_rollout_steps: 89
+artifacts:
+  logs_dir: null
+  run_dir_template: '{stamp}_{initialization}_n{points}'
+  write_history_json: true
+  write_experiment_index: true
+  link_train_log: true
+description: 'Config: baseline_mspt_90_grid18'

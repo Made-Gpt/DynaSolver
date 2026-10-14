@@ -1,0 +1,24 @@
+DynaSolver third-party notices
+==============================
+
+This repository includes or derives from the following third-party work.
+
+1) MSPT
+   - Location: dynasolver/vendor/mspt/
+   - Upstream: https://github.com/pedrocurvo/mspt (arXiv:2512.01738)
+   - License: Apache License 2.0 (see dynasolver/vendor/mspt/LICENSE)
+
+2) Transolver / Physics Attention
+   - The spatial Transolver blocks and Physics Attention modules in
+     dynasolver/models/Transolver.py and dynasolver/layers/Physics_Attention.py
+     follow the Transolver architecture and public reference implementations:
+     https://github.com/thuml/Transolver
+   - Please cite the Transolver paper when comparing against or extending
+     these spatial modules.
+
+3) GeoPT (optional pretrained backbone)
+   - DynaSolver can optionally initialize spatial preprocess / Transolver block
+     weights from a GeoPT checkpoint (GEOPT_CHECKPOINT).
+   - Checkpoint files are not redistributed in this repository. Integrity of a
+     known checkpoint can be verified via GEOPT_CHECKPOINT_SHA256 in
+     dynasolver/utils/constants.py.

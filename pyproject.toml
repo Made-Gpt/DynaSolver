@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dynasolver"
+version = "0.1.0"
+description = "DynaSolver: neural operator for autoregressive 4D flow prediction with dynamic boundaries"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Rui Qian" },
+  { name = "Shibo Dai" },
+  { name = "Mengjun Lin" },
+  { name = "Yuk-Kit Hou" },
+  { name = "Saining Zhang" },
+  { name = "Junhao Chen" },
+  { name = "Hao Zhao" },
+  { name = "Chaojian Li" },
+]
+dependencies = [
+  "numpy>=1.26,<2",
+  "h5py>=3.10,<4",
+  "torch>=2.2",
+  "timm>=0.9",
+  "einops>=0.7",
+  "PyYAML>=6",
+  "matplotlib>=3.7",
+  "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+# Optional heavy deps for vendor MSPTUn/MSPTStr or flash-attn paths.
+# Install manually when needed: pip install flash-attn torch-geometric
+mspt-extra = []
+
+[project.urls]
+Homepage = "https://made-gpt.github.io/DynaSolver-ProjectPage/"
+Repository = "https://github.com/Made-Gpt/DynaSolver"
+"Project Page" = "https://made-gpt.github.io/DynaSolver-ProjectPage/"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dynasolver*"]
+
+[tool.setuptools.package-data]
+dynasolver = ["vendor/mspt/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "dynasolver"]

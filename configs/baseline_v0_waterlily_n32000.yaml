@@ -1,0 +1,51 @@
+schema_version: 1
+experiment_id: baseline_v0_waterlily_n32000
+paths:
+  code_root: .
+  data_root: ${DYNASOLVER_DATA}
+  manifest: ${DYNASOLVER_DATA}/manifests/g1_waterlily_n32000_manifest.json
+  geopt_checkpoint: ${GEOPT_CHECKPOINT}
+  runs_root: ${DYNASOLVER_DATA}/runs/baseline_v0_waterlily_n32000
+model:
+  name: DynamicTransolverV0
+  space_dim: 3
+  fun_dim: 11
+  state_dim: 4
+  boundary_dim: 8
+  n_hidden: 256
+  n_heads: 8
+  n_layers: 8
+  slice_num: 32
+  mlp_ratio: 2
+  dropout: 0.0
+  act: gelu
+  geotype: unstructured
+training:
+  initialization: from_scratch
+  points: 32000
+  subset_seed: 20260826
+  batch_size: 1
+  num_workers: 2
+  prefetch_factor: 2
+  pin_memory: true
+  lr: 0.0001
+  weight_decay: 1.0e-05
+  epochs: 200
+  early_stop_patience: 40
+  max_grad_norm: 1.0
+  seeds:
+  - 17
+  selection_metric: validation_loss
+  validation_rollout_steps: 100
+artifacts:
+  logs_dir: null
+  run_dir_template: '{stamp}_{initialization}_n{points}'
+  write_history_json: true
+  write_experiment_index: true
+  link_train_log: true
+claim_boundary:
+  notes:
+  - WaterLily BDIM/IBM single-trajectory time split (not full 16-wind campaign)
+  - N=32000 preprocessed HDF5; batch_size=1 for GPU memory
+  - v0_fs only in this config (from_scratch)
+description: 'Config: baseline_v0_waterlily_n32000'

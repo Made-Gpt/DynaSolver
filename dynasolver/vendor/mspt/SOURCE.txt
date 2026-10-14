@@ -1,0 +1,6 @@
+Isolated MSPT vendor copy for the DynaSolver release.
+
+Upstream: https://github.com/pedrocurvo/mspt (arXiv:2512.01738)
+Contents: MSPT*.py + benchmarks/.../layers/{Embedding,Basic}.py
+
+See LICENSE in this directory for upstream terms.
